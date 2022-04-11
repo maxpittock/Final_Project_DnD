@@ -29,6 +29,30 @@ public class ProceduralGenerationAlgorithms
         //return path created (runs the random walk algorithm)
         return path;
     }
+
+    // creating the function to create corridors connecting multiple rooms 
+    public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition, int corridorLength)
+    {
+        //use list instead of vector 2 int since we need the last position for the next start position
+        List<Vector2Int> corridor = new List<Vector2Int>();
+        //Create direction varianble to select a direction
+        var direction = Direction2D.GetRandomDirection();
+        // add current position variable
+        var currentPosition = startPosition;
+        //Adds current pos as the start pos
+        corridor.Add(currentPosition);
+
+        for (int i = 0; i < corridorLength; i++)
+        {
+
+            currentPosition += direction;
+            //Adds current pos as the start pos
+            corridor.Add(currentPosition);
+        }
+        //return variable
+        return corridor;
+
+    }
 }
 
 public static class Direction2D
