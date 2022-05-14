@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ProceduralGenerationAlgorithms 
 {
@@ -53,7 +54,109 @@ public class ProceduralGenerationAlgorithms
         return corridor;
 
     }
+
+    //Binary space partioning algorithm 
+    //Boundsint is used as it allows the representationg of a box with interger values, this allows me to split the rooms
+    public static List<BoundsInt> BinarySpacePartioning(BoundsInt SplitSpace, int minWidth, int minHeight)
+    {
+        //use queue to split the rooms since it doesnt matter how they are split.
+        Queue<BoundsInt> roomsQueue = new Queue<BoundsInt>();
+        //Create the paramter to save the results
+        List<BoundsInt> roomsCreated = new List<BoundsInt>();
+        //Enqueue the split space 
+        roomsQueue.Enqueue(SplitSpace);
+        //If we have rooms to split
+        while (roomsQueue.Count > 0)
+        {
+            //Creates variable of  room to split
+            var room = roomsQueue.Dequeue();
+            //if statment checks if the room is able to be split into multiple rooms and how that room can be split (horizontally or vertically)
+            if(room.size.y >= minHeight && room.size.y <= minWidth)
+            {
+                //random way to split the room - if random number lower that .5 split horizontally
+                if (Random.value < 0.5f)    
+                {   
+                    //checks if we can split horizontally
+                    if (room.size.y >= minHeight * 2)
+                    {
+                        //call split horizontally method
+                        SplitHorizontally(minHeight, roomsQueue, room);
+                    }   
+                    //if cant split horizontally then check if we can split vertically
+                    else if(room.size.x >= minWidth * 2)
+                    {
+                        SplitVertically(minWidth, roomsQueue, room);
+                    }
+                    //if the room cannot be split either way but still contains a room
+                    else if(room.size.x >= minWidth && room.size.y >= minHeight)
+                    {
+                        //add the room to the list
+                        roomsCreated.Add(room);
+                    }
+                }
+            }
+                //if above .5 split vertically
+                else
+                {
+                    //if cant split horizontally then check if we can split vertically
+                    if(room.size.x >= minWidth * 2)
+                    {
+                        SplitVertically(minWidth, roomsQueue, room);
+                    }
+                    //checks if we can split horizontally
+                    else if (room.size.y >= minHeight * 2)
+                    {
+                        //call split horizontally method
+                        SplitHorizontally(minHeight, roomsQueue, room);
+                    }
+                    //if the room cannot be split either way but still contains a room
+                    else if(room.size.x >= minWidth && room.size.y >= minHeight)
+                    {
+                        //add the room to the list
+                        roomsCreated.Add(room);
+                    }
+                }
+            }
+            return roomsCreated;
+        }
+        
+
+
+    private static void SplitHorizontally(int minHeight, Queue<BoundsInt> roomsQueue, BoundsInt room)
+    {
+       
+        //defines the split of the room
+        var SplitY =    Random.Range(1, room.size.y);
+        //Defines room a start postion and creates the room parameter
+        BoundsInt roomA = new BoundsInt(room.min, new Vector3Int(SplitY, room.min.x, room.min.z));
+        //Defines room b start postion and creates the room parameter
+        BoundsInt roomB = new BoundsInt(new Vector3Int(room.min.x, room.min.y + SplitY, room.min.z),
+            //Create the size of the roomsQueue
+            new Vector3Int(room.size.y - SplitY, room.size.x, room.size.z));
+
+        //Adds the created rooms to the queue
+        roomsQueue.Enqueue(roomA);
+        roomsQueue.Enqueue(roomB);
+    }
+
+    private static void SplitVertically(int minWidth, Queue<BoundsInt> roomsQueue, BoundsInt room)
+    {
+        //defines the split of the room
+        var splitX = Random.Range(1, room.size.x); 
+        //Defines room a start postion and creates the room parameter
+        BoundsInt roomA = new BoundsInt(room.min, new Vector3Int(splitX, room.min.y, room.min.z));
+        //Defines room b start postion and creates the room parameter
+        BoundsInt roomB = new BoundsInt(new Vector3Int(room.min.x + splitX, room.min.y, room.min.z),
+            //Create the size of the roomsQueue
+            new Vector3Int(room.size.x - splitX, room.size.y, room.size.z));
+
+        //Adds the created rooms to the queue
+        roomsQueue.Enqueue(roomA);
+        roomsQueue.Enqueue(roomB);
+
+    }
 }
+//end of binary partioning algorithm
 
 public static class Direction2D
 {

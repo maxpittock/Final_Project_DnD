@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "929643456536",
+    "firebase_url": "https://final-project-dnd-default-rtdb.firebaseio.com",
+    "project_id": "final-project-dnd",
+    "storage_bucket": "final-project-dnd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:929643456536:android:2a7bd535fc3bc38400fb6d",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.MyFinalProject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "929643456536-s696j9j95ma66d07imgp5a3vpdrrn7hf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB65LEBXoi9CgXCURqHAGNJvNgwX1V8Yp8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "929643456536-s696j9j95ma66d07imgp5a3vpdrrn7hf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -29,8 +29,6 @@ public class WriteText : MonoBehaviour
         {
             return; 
         }
-
-
         //Creates the text file containing the inputted data
         string txtDocumentName = Application.streamingAssetsPath + "/Notes/" + "Page I" + ".txt";
         //check if the file already exists in the folder

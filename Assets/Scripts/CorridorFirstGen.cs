@@ -20,7 +20,7 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
     //Override the inherited class
     protected override void RunProceduralGeneration()
     {
-        //call func
+        //call new func
         CorridorFirstGeneration();
     }
 
@@ -32,12 +32,12 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
         //create hashset for storing where a room may be created after a corridor
         HashSet<Vector2Int> PotentialRoomPos = new HashSet<Vector2Int>();
 
-        //Uses funtion to create corridors an rooms
+        //Uses funtion to create corridors and rooms
         CreateCorridors(floorPositions, PotentialRoomPos);
 
-        //create a hashset to store room positions
+        //create a hashset to store room positions from function
         HashSet<Vector2Int> roomPositions = CreateRooms(PotentialRoomPos);      
-        //find and store dead ends
+        ///create a vector to store deadends from function - identidying dead ends allows me to add an extra room so i looks natural
         List<Vector2Int> deadEnds = FindDeadEnds(floorPositions);
         //create a room at the dead end (even if the max rooms has been generated)
         CreateRoomsAtDeadEnd(deadEnds, roomPositions);
@@ -50,41 +50,46 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
 
        private List<Vector2Int> FindDeadEnds(HashSet<Vector2Int> floorPositions)
     {
-        //store deadends in list
+        //Create a list for storing dead ends
         List<Vector2Int> deadEnds = new List<Vector2Int>();
-        //
+        //for each item in floor position vector
         foreach(var position in floorPositions)
         {
             //make counter for finding if there is a neighbour tile
             int neighbourCounter = 0;
+            //checks all sides of the tile
             foreach (var direction in Direction2D.DirectionList)
             {
-                //check if the floor has neighouring tile
+                //if the tile does have a neighouring one
                 if (floorPositions.Contains(position + direction))
                 {  
-                    //add to counter
+                    //add to neighbour counter
                     neighbourCounter++;
                 }
             }
             //if floor has no neighour 
             if (neighbourCounter == 1)
             {
-                //add the deadend to deadend list
+                //add the deadend to deadend list - this is how the algorithm knows where the dead ends are.
                 deadEnds.Add(position);
             }
         }
+        //return the list of deadends
         return deadEnds;
     }
 
+    //function for creating a room at a dead end
     private void CreateRoomsAtDeadEnd(List<Vector2Int> deadEnds, HashSet<Vector2Int> roomPositions)
     {
+        //for each element in the deadends vector (returned from the previous function)
         foreach (var position in deadEnds)
         {
-            //if no room touching = dead end
+            //if not room is already there
             if(roomPositions.Contains(position) == false)
             {
-                //creates new room on deadend
+                //Run the algoirthm and create a new room on the deadend
                 var roomFloor = RunRandomWalk(Algorithm_Parameters, position);
+                //join the new room with the rest of the rooms
                 roomPositions.UnionWith(roomFloor);
             }
         }
@@ -93,21 +98,22 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
     //create rooms function
     private HashSet<Vector2Int> CreateRooms(HashSet<Vector2Int> PotentialRoomPos)
     {  
-        //create hashset to store room pos
+        //create hashset vector to store room pos
         HashSet<Vector2Int> roomPositions = new HashSet<Vector2Int>();
-        //decides how many rooms to create
+        //Uses set parameters to decide how many rooms to create
         int RoomCreateCounter = Mathf.RoundToInt(PotentialRoomPos.Count * roomPercent);
-        //sorted room pos and got list of those room pos at random
+        //sorted room posistion and got list of those room posistions at random
         List<Vector2Int> roomToCreate = PotentialRoomPos.OrderBy(x => System.Guid.NewGuid()).Take(RoomCreateCounter).ToList();
 
+        //for each element in the roomtocreate vector
         foreach (var roomPosition in roomToCreate)
         {
-            //cycled through each position and create room
+            //cycle through the vector and create a room with the algorithm
             var roomFloor = RunRandomWalk(Algorithm_Parameters, roomPosition);
             //join the rooms and corridors
             roomPositions.UnionWith(roomFloor);
         }
-
+        //return room position vector
         return roomPositions;
 
     }
@@ -119,7 +125,7 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
         var currentPosition = startPosition;
         //adds the current pos to the hashset (this will be the start pos)
         PotentialRoomPos.Add(currentPosition);
-
+        
         for (var i = 0; i < corridorCount; i++ )
         {
             //this will generate our corridor posistions

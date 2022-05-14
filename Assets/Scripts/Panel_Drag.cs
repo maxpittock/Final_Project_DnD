@@ -9,10 +9,13 @@ public class Panel_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     //create feild for dragging entire panel
     [SerializeField]
     private RectTransform Panel;
+    //canvas field - define what canvas the dragger is on
     [SerializeField]
     private Canvas canvas;
     [SerializeField]
+    //background image definied 
     private Image BackgroundImage;
+    //background colour allows me to change the colour when being dragged
     private Color BackgroundColour;
 
     private void Awake()
@@ -43,7 +46,7 @@ public class Panel_Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnBeginDrag(PointerEventData eventData)
     {
         //on being dragged make the window slighty transparent
-        BackgroundColour.a = .4f;
+        BackgroundColour.a = .6f;
         //update colour
         BackgroundImage.color = BackgroundColour;
     }
