@@ -6,6 +6,22 @@
       "source": "local-tarball",
       "dependencies": {}
     },
+    "com.google.firebase.app": {
+      "version": "file:../Assets/GooglePackages/com.google.firebase.app-8.10.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.170"
+      }
+    },
+    "com.google.firebase.auth": {
+      "version": "file:../Assets/GooglePackages/com.google.firebase.auth-8.10.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.google.firebase.app": "8.10.1"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "7.0.5",
       "depth": 0,
