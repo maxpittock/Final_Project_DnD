@@ -57,6 +57,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -931,6 +932,45 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      testtiles_7: -1067288794022896603
+      testtiles_26: -3396399408498376405
+      testtiles_28: 4741214018755674680
+      testtiles_22: 554522661768021655
+      testtiles_6: 5207249655110336399
+      testtiles_35: -6780996314355676582
+      testtiles_14: -8413181067990776972
+      testtiles_20: 100784442840367493
+      testtiles_27: 6126826715952440130
+      testtiles_31: 6222459967246996166
+      testtiles_36: -3907828733505211953
+      testtiles_2: -689340587623622360
+      testtiles_4: -8604402398543820246
+      testtiles_5: -6548662058675822101
+      testtiles_16: 1603077355422493585
+      testtiles_17: 8042926000425915323
+      testtiles_32: -3367245505165131158
+      testtiles_25: 111178928651324408
+      testtiles_24: 8092551304081875582
+      testtiles_0: 2452944998770633510
+      testtiles_12: 1593849672084178692
+      testtiles_19: 2493676846694599645
+      testtiles_30: 4404140138777045194
+      testtiles_8: -6453745478091324875
+      testtiles_13: 6181851356015068664
+      testtiles_10: -6353423149903871250
+      testtiles_11: -4625337882541046526
+      testtiles_18: -417195524894350732
+      testtiles_21: -6229803748919776061
+      testtiles_29: -4869685865725098670
+      testtiles_34: 4322203218860389410
+      testtiles_9: 5116059861494293210
+      testtiles_33: 8090079297081872647
+      testtiles_15: -7544653091612974906
+      testtiles_37: -3201400499881036465
+      testtiles_3: 6871525765201072878
+      testtiles_23: -5304743688781195674
+      testtiles_1: -8065142605159712440
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
