@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Random = UnityEngine.Random;
 
 public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
 {
@@ -16,7 +17,11 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
     [Range(0.1f, 1)]
     private float roomPercent = 0.8f;
 
-     
+    //PCG data - dictionary for storing the procedural data
+    private Dictionary<Vector2Int, HashSet<Vector2Int>> roomDict = new Dictionary<Vector2Int, HashSet<Vector2Int>>();
+    //Create hashset for storing floor and corridor positions
+    private HashSet<Vector2Int> floorPositions, corridorPosition;
+
     //Override the inherited class
     protected override void RunProceduralGeneration()
     {
@@ -110,6 +115,11 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
         {
             //cycle through the vector and create a room with the algorithm
             var roomFloor = RunRandomWalk(Algorithm_Parameters, roomPosition);
+
+            //Save the room space in the dictionary (collecting data)
+            roomDict[roomPosition] = roomFloor;
+            //add random colours to the rooms
+            //roomColor.Add(Random.ColorHSV());
             //join the rooms and corridors
             roomPositions.UnionWith(roomFloor);
         }
@@ -137,6 +147,8 @@ public class CorridorFirstGen : SimpleRandomWalkDungeonGenerator
             //this joins the floor pos with the corridors
             floorPositions.UnionWith(corridor);
         }
+        //save the corrdior data into a hashset so that i can use this data elsewhere (collecting data)
+        corridorPosition = new HashSet<Vector2Int>(floorPositions);
     }
 
 }   

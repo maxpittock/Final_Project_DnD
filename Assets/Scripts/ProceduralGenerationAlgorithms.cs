@@ -65,13 +65,13 @@ public class ProceduralGenerationAlgorithms
         List<BoundsInt> roomsCreated = new List<BoundsInt>();
         //Enqueue the split space 
         roomsQueue.Enqueue(SplitSpace);
-        //If we have rooms to split
+        //while we have rooms to split
         while (roomsQueue.Count > 0)
         {
             //Creates variable of  room to split
             var room = roomsQueue.Dequeue();
             //if statment checks if the room is able to be split into multiple rooms and how that room can be split (horizontally or vertically)
-            if(room.size.y >= minHeight && room.size.y <= minWidth)
+            if(room.size.y >= minHeight && room.size.x >= minWidth)
             {
                 //random way to split the room - if random number lower that .5 split horizontally
                 if (Random.value < 0.5f)    
@@ -94,7 +94,7 @@ public class ProceduralGenerationAlgorithms
                         roomsCreated.Add(room);
                     }
                 }
-            }
+            
                 //if above .5 split vertically
                 else
                 {
@@ -116,23 +116,26 @@ public class ProceduralGenerationAlgorithms
                         roomsCreated.Add(room);
                     }
                 }
+     
             }
-            return roomsCreated;
+         
         }
-        
+        return roomsCreated;
+    }
+     
 
 
     private static void SplitHorizontally(int minHeight, Queue<BoundsInt> roomsQueue, BoundsInt room)
     {
        
-        //defines the split of the room
-        var SplitY =    Random.Range(1, room.size.y);
+        //defines the random split of the room
+        var SplitY = Random.Range(1, room.size.y);
         //Defines room a start postion and creates the room parameter
-        BoundsInt roomA = new BoundsInt(room.min, new Vector3Int(SplitY, room.min.x, room.min.z));
+        BoundsInt roomA = new BoundsInt(room.min, new Vector3Int(room.size.x, SplitY, room.size.z));
         //Defines room b start postion and creates the room parameter
         BoundsInt roomB = new BoundsInt(new Vector3Int(room.min.x, room.min.y + SplitY, room.min.z),
             //Create the size of the roomsQueue
-            new Vector3Int(room.size.y - SplitY, room.size.x, room.size.z));
+            new Vector3Int(room.size.x, room.size.y - SplitY, room.size.z));
 
         //Adds the created rooms to the queue
         roomsQueue.Enqueue(roomA);
@@ -144,7 +147,7 @@ public class ProceduralGenerationAlgorithms
         //defines the split of the room
         var splitX = Random.Range(1, room.size.x); 
         //Defines room a start postion and creates the room parameter
-        BoundsInt roomA = new BoundsInt(room.min, new Vector3Int(splitX, room.min.y, room.min.z));
+        BoundsInt roomA = new BoundsInt(room.min, new Vector3Int(splitX, room.size.y, room.size.z));
         //Defines room b start postion and creates the room parameter
         BoundsInt roomB = new BoundsInt(new Vector3Int(room.min.x + splitX, room.min.y, room.min.z),
             //Create the size of the roomsQueue
@@ -168,6 +171,30 @@ public static class Direction2D
         new Vector2Int(1,0), //right
         new Vector2Int(0,-1), //down
         new Vector2Int(-1,0) //left
+    };
+
+    //create a list of diagonal directions for wall placement directions 
+    public static List<Vector2Int> Diagonal_DirectionList = new List<Vector2Int>
+    {
+        //directions for the new position
+        new Vector2Int(1,1), // up-right
+        new Vector2Int(1,-1), //right-down
+        new Vector2Int(-1,-1), //down-left
+        new Vector2Int(-1,1) //left-up
+    };
+
+        //create a list of directions 
+    public static List<Vector2Int> EightDirList = new List<Vector2Int>
+    {      
+        //directions for the new position
+        new Vector2Int(0,1), // up
+        new Vector2Int(1,1), // up-right
+        new Vector2Int(1,0), //right
+        new Vector2Int(1,-1), //right-down
+        new Vector2Int(0,-1), //down
+        new Vector2Int(-1,-1), //down-left
+        new Vector2Int(-1,0), //left
+        new Vector2Int(-1,1) //left-up
     };
 
     //method to get random direction

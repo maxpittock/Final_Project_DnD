@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Firebase;
+using Firebase.Database;
 using Firebase.Auth;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
-public class Firebase_Authentication : MonoBehaviour
+public class Firebase_Manager : MonoBehaviour
 {
 
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
-    public FirebaseAuth auth;    
+    //authentication variable
+    public FirebaseAuth auth;  
+    //user  
     public FirebaseUser User;
+    //reference to the database
+    public DatabaseReference DBreference;
 
     //Login variables
     [Header("Login")]
@@ -29,7 +35,11 @@ public class Firebase_Authentication : MonoBehaviour
     public TMP_InputField passwordRegisterField;
     public TMP_InputField passwordRegisterVerifyField;
     public TMP_Text warningRegisterText;
-
+    
+    [Header("Player_data")]
+    public TMP_InputField PlayerName;
+    public TMP_InputField Class_Level;
+    
     void Awake()
     {
         //checks all dependencies that are needed to run firebase are present within the project
@@ -56,6 +66,23 @@ public class Firebase_Authentication : MonoBehaviour
         Debug.Log("Setting up autentication for firebase");
         //set the authentication instance object
         auth = FirebaseAuth.DefaultInstance;
+
+        DBreference = FirebaseDatabase.DefaultInstance.RootReference;
+    }
+
+    public void ClearLoginInput()
+    {
+        //sets the input fields to no longer contain any data when returning to the login page
+        emailLoginField.text = "";
+        passwordLoginField.text = "";
+    }
+    public void ClearRegisterInput()
+    {
+        //sets the input fields to no longer contain any data when returning to the register page
+        usernameRegisterField.text = "";
+        emailRegisterField.text = "";
+        passwordRegisterField.text = "";
+        passwordRegisterVerifyField.text = "";
     }
 
     public void LoginButton()
@@ -71,6 +98,73 @@ public class Firebase_Authentication : MonoBehaviour
         StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
 
+
+     //function for saving the users data
+    public void SaveDataButton()
+    {
+           //update the data for the text fields
+        StartCoroutine(UpdateUsernameAuth(PlayerName.text));
+        StartCoroutine(UpdateUsernameDatabase(PlayerName.text));
+        StartCoroutine(UpdateClass_Level(Class_Level.text));
+    }
+
+    private IEnumerator UpdateUsernameAuth(string username)
+    {
+        //Create a user profile and set the username
+        UserProfile profile = new UserProfile { DisplayName = username };
+
+        //Call the Firebase auth update user profile function passing the profile with the username
+        var ProfileTask = User.UpdateUserProfileAsync(profile);
+        //Wait until the task completes
+        yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
+
+        if (ProfileTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
+        }
+        else
+        {
+            //Auth username is now updated
+        }        
+    }
+
+    private IEnumerator UpdateUsernameDatabase(string username)
+    {
+        //Set the currently logged in user username in the database
+        //main line to update the database
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("username").SetValueAsync(username);
+
+        //wait until the task is completed
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else
+        {
+            //Database username is now updated
+        }
+    }
+
+    private IEnumerator UpdateClass_Level(string Class_Level)
+    {
+        //Set the currently logged in user kills
+        var DBTask = DBreference.Child("users").Child(User.UserId).Child("Class & Level").SetValueAsync(Class_Level);
+
+        yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
+
+        if (DBTask.Exception != null)
+        {
+            Debug.LogWarning(message: $"Failed to register task with {DBTask.Exception}");
+        }
+        else
+        {
+            //Kills are now updated
+        }
+    }
+
+  
     //Login function
     private IEnumerator Login(string email, string password)
     {
@@ -130,6 +224,14 @@ public class Firebase_Authentication : MonoBehaviour
             warningLoginText.text = "";
             //set the success message as logged in
             confirmLoginText.text = "Logged in!";
+
+            //Wait for 2 seconds
+            yield return new WaitForSeconds(2);
+            
+            //Change the scene to the specficed one
+            UIManager.instance.MainMenu();
+            //After 2 seconds set the confirm text to be empty
+            confirmLoginText.text = "";
         }
     }
 
@@ -151,7 +253,7 @@ public class Firebase_Authentication : MonoBehaviour
         else
         {
         //calls the firebase authentication sign in function to pass the email and password
-        var RegisterTask = auth.SignInWithEmailAndPasswordAsync(email, password);
+        var RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
         //this waits until the register task has been completed
         yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
         //check if some type of exception occurs
@@ -165,7 +267,7 @@ public class Firebase_Authentication : MonoBehaviour
             AuthError errorcode = (AuthError)firebaseEx.ErrorCode;
 
             //set message variable
-            string message = "Register failed :( ";
+            string message = "Register failed";
             //create switch statement using the error code to display what the user has inputted incorrectly
             switch (errorcode)
             {
@@ -228,4 +330,19 @@ public class Firebase_Authentication : MonoBehaviour
         }
 
     }
+    //updating database data
+
+    //Signing the user out with a button
+    public void SignOutButton()
+    {
+        //sign the user out of their firebase account
+        auth.SignOut();
+        //load the login 
+        UIManager.instance.LoginScreen();
+        //runs the clear inputbox functions
+        ClearRegisterInput();
+        ClearLoginInput();
+    }
+
+
 }

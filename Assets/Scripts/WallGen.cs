@@ -10,12 +10,12 @@ public static class WallGen
     {
         //finds the walls in the dungeon
         var basicWallPositions = FindWallsInDirection(floorPositions, Direction2D.DirectionList);
-        //Create foreach loop for painting tiles onto the cnvas
-        foreach (var position in basicWallPositions)
-        {
-            //paint tiles
-            tilemapVisualizer.Paintbasicwall(position);
-        }
+        var CornerWall = FindWallsInDirection(floorPositions, Direction2D.Diagonal_DirectionList);
+        //creates the basic walls
+        CreateBasicWall(tilemapVisualizer, basicWallPositions, floorPositions);
+        //responsible for placing corner walls and correcting previous walls if they are incorrect (thats why its called after)
+        CreateCornerWall(tilemapVisualizer, CornerWall, floorPositions);
+  
 
     }
 
@@ -38,6 +38,61 @@ public static class WallGen
             }
         }
         return wallPositions;
+    }
+
+    public static void CreateBasicWall(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> basicWallPositions, HashSet<Vector2Int> floorPositions)
+    {
+        //for each element in the wall posistion vector (each individual wall)
+        foreach (var position in basicWallPositions)
+        {
+            //setup the empty neighbour string
+            string Binary_Neighbor = "";
+            //
+            foreach (var direction in Direction2D.DirectionList)
+            {
+                //checking the neighours of the current tile
+                var Neighbourpos = position + direction;
+                //if a floor is detected 
+                if (floorPositions.Contains(Neighbourpos))
+                {
+                    //add one to the binary neighbour string
+                    Binary_Neighbor += "1";
+                }
+                else
+                {
+                    Binary_Neighbor += "0";
+                }
+            }
+            //paint tiles
+            tilemapVisualizer.Paintbasicwall(position, Binary_Neighbor);
+        }
+    }
+
+    public static void CreateCornerWall(TilemapVisualizer tilemapVisualizer, HashSet<Vector2Int> CornerWallPositions, HashSet<Vector2Int> floorPositions)
+    {
+        
+        //for each element in the wall posistion vector (each individual wall)
+        foreach (var position in CornerWallPositions)
+        {
+            //setup the empty neighbour string
+            string Binary_Neighbor = "";
+            //
+            foreach (var direction in Direction2D.EightDirList)
+            {
+                //find the neighourborus positions
+                var neighbourPos = position + direction;;
+                if (floorPositions.Contains(neighbourPos))
+                {
+                    Binary_Neighbor += "1";
+                }
+                else
+                {
+                    Binary_Neighbor += "0";
+                }
+            }
+            //paint tiles
+            tilemapVisualizer.Paintcornerwall(position, Binary_Neighbor);
+        }
     }
 
 }
