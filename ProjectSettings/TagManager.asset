@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Playername
+  - emailLogin
+  - Passwordlogin
+  - username
+  - emailregister
+  - passwordregister
+  - passwordconfirm
+  - warninglogin
+  - warningregister
+  - confirmedregister
+  - confirmedlogin
+  - Class_Level
+  - Race
+  - Alignment
+  - Background
+  - exp
   layers:
   - Default
   - TransparentFX

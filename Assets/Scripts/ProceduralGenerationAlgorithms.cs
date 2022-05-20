@@ -13,10 +13,10 @@ public class ProceduralGenerationAlgorithms
 
         //add start posittion to path
         path.Add(startPosistion);
-        //
+        //sets the previous posisiton as the currrent start position - so the alogirithm doesnt go back on itself
         var previousPosition = startPosistion;
 
-        //
+        //while i is smaller than the defined walk length
         for (int i = 0; i < walkLength; i++)
         {
             //Move 1 step from previous position to random direction 

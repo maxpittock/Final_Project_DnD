@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Floor_Neighbour_Graph : MonoBehaviour
 {
-    /*
+    
     //create a list of directions 
     public static List<Vector2Int> DirectionList = new List<Vector2Int>
     {
@@ -33,20 +35,20 @@ public class Floor_Neighbour_Graph : MonoBehaviour
     List<Vector2Int> graph;
 
     //constructor for intialisin the graph list
-    public Floor_Neighbour_Graph(IEnumerable<Vector2Int> Vertices)
+    public Floor_Neighbour_Graph(IEnumerable<Vector2Int> RoomFloor)
     {
-        graph = new List<Vector2Int>(vertices);
+        graph = new List<Vector2Int>(RoomFloor);
     }
    
     //Up down left right checks
     public List<Vector2Int> Neighbour4Dir(Vector2Int startPosition)
     {
-        return GetNeigbours(startPosition, NeighbourDirFour);
+        return GetNeigbours(startPosition, DirectionList);
     }
     //other directional checks for neighbours
     public List<Vector2Int> Neighbour8Dir(Vector2Int startPosition)
     {
-        return GetNeigbours(startPosition, NeighbourDirEight);
+        return GetNeigbours(startPosition, EightDirList);
     }
 
     //get neighbour function 
@@ -66,5 +68,5 @@ public class Floor_Neighbour_Graph : MonoBehaviour
         }
         return neighbours;
     }
-*/
+
 }

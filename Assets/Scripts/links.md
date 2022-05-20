@@ -45,3 +45,4 @@ To create the different rooms uses the dijstra algorithm - this allows me to cre
     - campfires 
     - bookshelfs
     
+https://firebase.blog/posts/2019/07/firebase-and-tasks-how-to-deal-with

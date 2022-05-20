@@ -24,6 +24,7 @@ public class Read_Text : MonoBehaviour
         foreach (string line in FileData)
         {
             Instantiate(readText, contentWindow);
+
             readText.GetComponent<Text>().text = line;
         }
     }
