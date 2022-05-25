@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 51e3aab3f3977b046ad34cb4a311d72a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Map_Editor.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -27,6 +27,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Character_Sheets.unity
     guid: 2cfe8e6b4db68824abe3ace8ca0117f3
   - enabled: 1
+    path: Assets/Scenes/Matchmaking.unity
+    guid: 6517b5a75e30bfd44a7c7ab46ef30876
+  - enabled: 0
     path: Assets/Scenes/LoginRegister.unity
     guid: 543ede692b4fcfe4788a9df0808e5ec3
   m_configObjects: {}

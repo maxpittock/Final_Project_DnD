@@ -15,7 +15,7 @@
       }
     },
     "com.google.firebase.auth": {
-      "version": "file:../Assets/GooglePackages/com.google.firebase.auth-8.10.1.tgz",
+      "version": "file:C:/Users/maxpi/Desktop/GooglePackages/com.google.firebase.auth-8.10.1.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -23,11 +23,27 @@
       }
     },
     "com.google.firebase.database": {
-      "version": "file:../Assets/GooglePackages/com.google.firebase.database-8.10.1.tgz",
+      "version": "file:C:/Users/maxpi/Desktop/GooglePackages/com.google.firebase.database-8.10.1.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
         "com.google.firebase.auth": "8.10.1"
+      }
+    },
+    "com.google.firebase.functions": {
+      "version": "file:C:/Users/maxpi/Downloads/com.google.firebase.functions-8.10.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.google.firebase.app": "8.10.1"
+      }
+    },
+    "com.google.firebase.messaging": {
+      "version": "file:C:/Users/maxpi/Downloads/com.google.firebase.messaging-8.10.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.google.firebase.app": "8.10.1"
       }
     },
     "com.unity.2d.animation": {
@@ -129,7 +145,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.13",
+      "version": "3.0.14",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -138,7 +154,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.14",
+      "version": "2.0.15",
       "depth": 0,
       "source": "registry",
       "dependencies": {
