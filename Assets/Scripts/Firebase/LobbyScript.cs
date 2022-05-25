@@ -13,7 +13,7 @@ namespace Handlers
         public void Play()
         {
             Debug.Log("Button pressed");
-            warning.text = PlayerID.text;
+            //warning.text = PlayerID.text;
             Debug.Log(PlayerID.text);
             //stores the input field into a variable
             MainManager.Instance.currentLocalPlayerId = PlayerID.text;

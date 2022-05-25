@@ -70,7 +70,7 @@ namespace Handlers
             else
                 MainManager.Instance.matchmakingManager.LeaveQueue(MainManager.Instance.currentLocalPlayerId,
                     () => Debug.Log("Left queue successfully"), Debug.Log);
-            SceneManager.LoadScene("MenuScene");
+            SceneManager.LoadScene("MenuMenu");
         }
 
         public void Ready() =>

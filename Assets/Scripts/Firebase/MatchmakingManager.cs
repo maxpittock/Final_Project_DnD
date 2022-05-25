@@ -5,6 +5,7 @@ using Firebase.Database;
 using Firebase.Auth;
 using Firebase;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers
 {
@@ -40,6 +41,7 @@ namespace Managers
         {
             DatabaseAPI.StopListeningForValueChanged(queueListener);
             DatabaseAPI.PostJSON($"DungeonMasters/matchmaking/{playerId}", "null", callback, fallback);
+            SceneManager.LoadScene("Matchmaking");
         }
     }
 }

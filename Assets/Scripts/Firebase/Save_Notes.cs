@@ -72,14 +72,14 @@ public class Save_Notes : MonoBehaviour
     private IEnumerator UpdateNotes(string Notes)
     {
         //main line to update the database
-        var DBTask1 = DBreference.Child("users").Child(User.UserId).Child("Notepad").Child("Page1").SetValueAsync(Notes);
+        var DBTask1 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Notepad").Child("Page1").SetValueAsync(Notes);
         yield return new WaitUntil(predicate: () => DBTask1.IsCompleted);
   
     }
 
     private IEnumerator LoadData()
     {
-        var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+        var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
 
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 

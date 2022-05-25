@@ -170,7 +170,7 @@ namespace Firebase_Authentication
         public void SaveDataButton()
         {
             //update the data for the text fields
-            StartCoroutine(UpdateUsernameAuth(PlayerName.text));
+            //StartCoroutine(UpdateUsernameAuth(PlayerName.text));
 
             StartCoroutine(UpdateCharDetails(PlayerName.text, Class_Level.text, Race.text, Alignment.text, Background.text, Exp.text));
             
@@ -234,7 +234,7 @@ namespace Firebase_Authentication
 
             var DBTask1 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Details").Child("PlayerName").SetValueAsync(PlayerName);
             yield return new WaitUntil(predicate: () => DBTask1.IsCompleted);
-            var DBTask2 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Details").Child("Class & Level").SetValueAsync(Class_Level);
+            var DBTask2 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Details").Child("ClassLevel").SetValueAsync(Class_Level);
             yield return new WaitUntil(predicate: () => DBTask2.IsCompleted);
             var DBTask3 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Details").Child("Race").SetValueAsync(Race);
             yield return new WaitUntil(predicate: () => DBTask3.IsCompleted);
@@ -251,13 +251,13 @@ namespace Firebase_Authentication
         private IEnumerator UpdateCharBackground(string Traits, string Ideals, string Bonds, string Flaws)
         {
             //main line to update the database
-            var DBTask7 = DBreference.Child("users").Child(User.UserId).Child("Background").Child("Traits").SetValueAsync(Traits);
+            var DBTask7 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Background").Child("Traits").SetValueAsync(Traits);
             yield return new WaitUntil(predicate: () => DBTask7.IsCompleted);
-            var DBTask8 = DBreference.Child("users").Child(User.UserId).Child("Background").Child("Ideals").SetValueAsync(Ideals);
+            var DBTask8 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Background").Child("Ideals").SetValueAsync(Ideals);
             yield return new WaitUntil(predicate: () => DBTask8.IsCompleted);
-            var DBTask9 = DBreference.Child("users").Child(User.UserId).Child("Background").Child("Bonds").SetValueAsync(Bonds);
+            var DBTask9 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Background").Child("Bonds").SetValueAsync(Bonds);
             yield return new WaitUntil(predicate: () => DBTask9.IsCompleted);
-            var DBTask10 = DBreference.Child("users").Child(User.UserId).Child("Background").Child("Flaws").SetValueAsync(Flaws);
+            var DBTask10 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Background").Child("Flaws").SetValueAsync(Flaws);
             yield return new WaitUntil(predicate: () => DBTask10.IsCompleted);
 
         
@@ -266,38 +266,38 @@ namespace Firebase_Authentication
         {
             
             //main line to update the database
-            var DBTask11 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("TemporaryHP").SetValueAsync(TempHitPoints);
+            var DBTask11 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("TemporaryHP").SetValueAsync(TempHitPoints);
             yield return new WaitUntil(predicate: () => DBTask11.IsCompleted);
-            var DBTask12 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("CurrentHP").SetValueAsync(CurrentHitPoints);
+            var DBTask12 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("CurrentHP").SetValueAsync(CurrentHitPoints);
             yield return new WaitUntil(predicate: () => DBTask12.IsCompleted);
-            var DBTask13 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("HP Max").SetValueAsync(HitPointMax);
+            var DBTask13 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("HP Max").SetValueAsync(HitPointMax);
             yield return new WaitUntil(predicate: () => DBTask13.IsCompleted);
-            var DBTask14 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("HitDie").SetValueAsync(Hitdie);
+            var DBTask14 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("HitDie").SetValueAsync(Hitdie);
             yield return new WaitUntil(predicate: () => DBTask14.IsCompleted);
-            var DBTask15 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("MaxHitDie").SetValueAsync(MaxHitdie);
+            var DBTask15 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("MaxHitDie").SetValueAsync(MaxHitdie);
             yield return new WaitUntil(predicate: () => DBTask15.IsCompleted);
-            var DBTask16 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("Initiative").SetValueAsync(Intiative);
+            var DBTask16 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("Initiative").SetValueAsync(Intiative);
             yield return new WaitUntil(predicate: () => DBTask16.IsCompleted);
-            var DBTask17 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("Speed").SetValueAsync(Speed);
+            var DBTask17 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("Speed").SetValueAsync(Speed);
             yield return new WaitUntil(predicate: () => DBTask17.IsCompleted);
-            var DBTask18 = DBreference.Child("users").Child(User.UserId).Child("Health").Child("ArmourClass").SetValueAsync(Armour_Class);
+            var DBTask18 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Health").Child("ArmourClass").SetValueAsync(Armour_Class);
             yield return new WaitUntil(predicate: () => DBTask18.IsCompleted);
         }
 
         private IEnumerator UpdateCharEquipment(string Equipment, int Copper, int Silver, int Gold, int Platinum, int Etherium)
         {
             //main line to update the database
-            var DBTask19 = DBreference.Child("users").Child(User.UserId).Child("Equipment").Child("Equipment").SetValueAsync(Equipment);
+            var DBTask19 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Equipment").Child("Equipment").SetValueAsync(Equipment);
             yield return new WaitUntil(predicate: () => DBTask19.IsCompleted);
-            var DBTask20 = DBreference.Child("users").Child(User.UserId).Child("Equipment").Child("Copper").SetValueAsync(Copper);
+            var DBTask20 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Equipment").Child("Copper").SetValueAsync(Copper);
             yield return new WaitUntil(predicate: () => DBTask20.IsCompleted);
-            var DBTask21 = DBreference.Child("users").Child(User.UserId).Child("Equipment").Child("Silver").SetValueAsync(Silver);
+            var DBTask21 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Equipment").Child("Silver").SetValueAsync(Silver);
             yield return new WaitUntil(predicate: () => DBTask21.IsCompleted);
-            var DBTask22 = DBreference.Child("users").Child(User.UserId).Child("Equipment").Child("Gold").SetValueAsync(Gold);
+            var DBTask22 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Equipment").Child("Gold").SetValueAsync(Gold);
             yield return new WaitUntil(predicate: () => DBTask22.IsCompleted);
-            var DBTask23 = DBreference.Child("users").Child(User.UserId).Child("Equipment").Child("Platinum").SetValueAsync(Platinum);
+            var DBTask23 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Equipment").Child("Platinum").SetValueAsync(Platinum);
             yield return new WaitUntil(predicate: () => DBTask23.IsCompleted);
-            var DBTask24 = DBreference.Child("users").Child(User.UserId).Child("Equipment").Child("Etherium").SetValueAsync(Etherium);
+            var DBTask24 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Equipment").Child("Etherium").SetValueAsync(Etherium);
             yield return new WaitUntil(predicate: () => DBTask24.IsCompleted);
             //wait until the task is completed
         
@@ -306,7 +306,7 @@ namespace Firebase_Authentication
         private IEnumerator UpdateInventory(string Inventory)
         {
             //main line to update the database
-            var DBTask25 = DBreference.Child("users").Child(User.UserId).Child("Inventory").Child("Inventory").SetValueAsync(Inventory);
+            var DBTask25 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Inventory").Child("Inventory").SetValueAsync(Inventory);
             yield return new WaitUntil(predicate: () => DBTask25.IsCompleted);
             
         }
@@ -319,125 +319,125 @@ namespace Firebase_Authentication
             //main line to update the database
 
             //Main stats
-            var DBTask26 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Strength").SetValueAsync(Strength);
+            var DBTask26 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Strength").SetValueAsync(Strength);
             yield return new WaitUntil(predicate: () => DBTask26.IsCompleted);
-            var DBTask27 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Dexterity").SetValueAsync(Dexterity);
+            var DBTask27 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Dexterity").SetValueAsync(Dexterity);
             yield return new WaitUntil(predicate: () => DBTask27.IsCompleted);
-            var DBTask28 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Constitution").SetValueAsync(Constitution);
+            var DBTask28 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Constitution").SetValueAsync(Constitution);
             yield return new WaitUntil(predicate: () => DBTask28.IsCompleted);
-            var DBTask29 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Intelligence").SetValueAsync(Intelligence);
+            var DBTask29 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Intelligence").SetValueAsync(Intelligence);
             yield return new WaitUntil(predicate: () => DBTask29.IsCompleted);
-            var DBTask30 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Wisdom").SetValueAsync(Wisdom);
+            var DBTask30 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Wisdom").SetValueAsync(Wisdom);
             yield return new WaitUntil(predicate: () => DBTask30.IsCompleted);
-            var DBTask31 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Charisma").SetValueAsync(Charisma);
+            var DBTask31 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Charisma").SetValueAsync(Charisma);
             yield return new WaitUntil(predicate: () => DBTask31.IsCompleted);
 
             //proficiencies
-            var DBTask32 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("StrengthProf").SetValueAsync(StrengthProf);
+            var DBTask32 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("StrengthProf").SetValueAsync(StrengthProf);
             yield return new WaitUntil(predicate: () => DBTask32.IsCompleted);
-            var DBTask33 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("DexterityProf").SetValueAsync(DexterityProf);
+            var DBTask33 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("DexterityProf").SetValueAsync(DexterityProf);
             yield return new WaitUntil(predicate: () => DBTask33.IsCompleted);
-            var DBTask34 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("ConstitutionProf").SetValueAsync(ConstitutionProf);
+            var DBTask34 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("ConstitutionProf").SetValueAsync(ConstitutionProf);
             yield return new WaitUntil(predicate: () => DBTask34.IsCompleted);
-            var DBTask35 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("IntelligenceProf").SetValueAsync(IntelligenceProf);
+            var DBTask35 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("IntelligenceProf").SetValueAsync(IntelligenceProf);
             yield return new WaitUntil(predicate: () => DBTask35.IsCompleted);
-            var DBTask36 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("WisdomProf").SetValueAsync(WisdomProf);
+            var DBTask36 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("WisdomProf").SetValueAsync(WisdomProf);
             yield return new WaitUntil(predicate: () => DBTask36.IsCompleted);
-            var DBTask37 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("CharismaProf").SetValueAsync(CharismaProf);
+            var DBTask37 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("CharismaProf").SetValueAsync(CharismaProf);
             yield return new WaitUntil(predicate: () => DBTask37.IsCompleted);
 
             //saving throws
-            var DBTask38 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("StrengthSavingThrows").SetValueAsync(StrengthSavingThrow);
+            var DBTask38 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("StrengthSavingThrows").SetValueAsync(StrengthSavingThrow);
             yield return new WaitUntil(predicate: () => DBTask38.IsCompleted);
-            var DBTask39 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("DexteritySavingThrows").SetValueAsync(DexteritySavingThrow);
+            var DBTask39 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("DexteritySavingThrows").SetValueAsync(DexteritySavingThrow);
             yield return new WaitUntil(predicate: () => DBTask39.IsCompleted);
-            var DBTask40 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("ConstitutionSavingThrows").SetValueAsync(ConstitutionSavingThrow);
+            var DBTask40 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("ConstitutionSavingThrows").SetValueAsync(ConstitutionSavingThrow);
             yield return new WaitUntil(predicate: () => DBTask40.IsCompleted);
-            var DBTask41 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("IntelligenceSavingThrows").SetValueAsync(IntelligenceSavingThrow);
+            var DBTask41 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("IntelligenceSavingThrows").SetValueAsync(IntelligenceSavingThrow);
             yield return new WaitUntil(predicate: () => DBTask41.IsCompleted);
-            var DBTask42 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("WisdomSavingThrows").SetValueAsync(WisdomSavingThrow);
+            var DBTask42 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("WisdomSavingThrows").SetValueAsync(WisdomSavingThrow);
             yield return new WaitUntil(predicate: () => DBTask42.IsCompleted);
-            var DBTask43 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("CharismaSavingThrows").SetValueAsync(CharismaSavingThrow);
+            var DBTask43 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("CharismaSavingThrows").SetValueAsync(CharismaSavingThrow);
             yield return new WaitUntil(predicate: () => DBTask43.IsCompleted);
 
             //bonus stats
-            var DBTask44 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Inspiration").SetValueAsync(Inspiration);
+            var DBTask44 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Inspiration").SetValueAsync(Inspiration);
             yield return new WaitUntil(predicate: () => DBTask44.IsCompleted);
-            var DBTask45 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("ProfBonus").SetValueAsync(Prof_Bonus);
+            var DBTask45 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("ProfBonus").SetValueAsync(Prof_Bonus);
             yield return new WaitUntil(predicate: () => DBTask45.IsCompleted);
-            var DBTask46 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("PassivePerception").SetValueAsync(PassivePerception);
+            var DBTask46 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("PassivePerception").SetValueAsync(PassivePerception);
             yield return new WaitUntil(predicate: () => DBTask46.IsCompleted);
 
             //Skills
-            var DBTask47 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Acrobatics").SetValueAsync(Acrobatics);
+            var DBTask47 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Acrobatics").SetValueAsync(Acrobatics);
             yield return new WaitUntil(predicate: () => DBTask47.IsCompleted);
-            var DBTask48 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("AnimalHandling").SetValueAsync(Animal_Handling);
+            var DBTask48 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("AnimalHandling").SetValueAsync(Animal_Handling);
             yield return new WaitUntil(predicate: () => DBTask48.IsCompleted);
-            var DBTask49 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Arcana").SetValueAsync(Arcana);
+            var DBTask49 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Arcana").SetValueAsync(Arcana);
             yield return new WaitUntil(predicate: () => DBTask49.IsCompleted);
-            var DBTask50 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Atheletics").SetValueAsync(Atheletics);
+            var DBTask50 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Atheletics").SetValueAsync(Atheletics);
             yield return new WaitUntil(predicate: () => DBTask50.IsCompleted);
-            var DBTask51 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Deception").SetValueAsync(Deception);
+            var DBTask51 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Deception").SetValueAsync(Deception);
             yield return new WaitUntil(predicate: () => DBTask51.IsCompleted);
-            var DBTask52 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("History").SetValueAsync(History);
+            var DBTask52 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("History").SetValueAsync(History);
             yield return new WaitUntil(predicate: () => DBTask52.IsCompleted);
-            var DBTask53 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Insight").SetValueAsync(Insight);
+            var DBTask53 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Insight").SetValueAsync(Insight);
             yield return new WaitUntil(predicate: () => DBTask53.IsCompleted);
-            var DBTask54 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Intimidatiom").SetValueAsync(Intimidatiom);
+            var DBTask54 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Intimidatiom").SetValueAsync(Intimidatiom);
             yield return new WaitUntil(predicate: () => DBTask54.IsCompleted);
-            var DBTask55 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Investigation").SetValueAsync(Investigation);
+            var DBTask55 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Investigation").SetValueAsync(Investigation);
             yield return new WaitUntil(predicate: () => DBTask55.IsCompleted);
-            var DBTask56 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Medicine").SetValueAsync(Medicine);
+            var DBTask56 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Medicine").SetValueAsync(Medicine);
             yield return new WaitUntil(predicate: () => DBTask56.IsCompleted);
-            var DBTask57 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Nature").SetValueAsync(Nature);
+            var DBTask57 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Nature").SetValueAsync(Nature);
             yield return new WaitUntil(predicate: () => DBTask57.IsCompleted);
-            var DBTask58 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Perception").SetValueAsync(Perception);
+            var DBTask58 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Perception").SetValueAsync(Perception);
             yield return new WaitUntil(predicate: () => DBTask58.IsCompleted);
-            var DBTask59 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Persuassion").SetValueAsync(Persuassion);
+            var DBTask59 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Persuassion").SetValueAsync(Persuassion);
             yield return new WaitUntil(predicate: () => DBTask59.IsCompleted);
-            var DBTask60 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Religion").SetValueAsync(Religion);
+            var DBTask60 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Religion").SetValueAsync(Religion);
             yield return new WaitUntil(predicate: () => DBTask60.IsCompleted);
-            var DBTask61 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("SleightOfHand").SetValueAsync(Sleight_Of_Hand);
+            var DBTask61 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("SleightOfHand").SetValueAsync(Sleight_Of_Hand);
             yield return new WaitUntil(predicate: () => DBTask61.IsCompleted);
-            var DBTask62 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Stealth").SetValueAsync(Stealth);
+            var DBTask62 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Stealth").SetValueAsync(Stealth);
             yield return new WaitUntil(predicate: () => DBTask62.IsCompleted);
-            var DBTask63 = DBreference.Child("users").Child(User.UserId).Child("Stats").Child("Survival").SetValueAsync(Survival);
+            var DBTask63 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Stats").Child("Survival").SetValueAsync(Survival);
             yield return new WaitUntil(predicate: () => DBTask63.IsCompleted);
         }
 
         private IEnumerator UpdateCharLanguagesProfs(string LanguagesandProfs)
         {
-            var DBTask63 = DBreference.Child("users").Child(User.UserId).Child("Character Languages and profs").Child("Languages and Profs").SetValueAsync(LanguagesandProfs);
+            var DBTask63 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Character Languages and profs").Child("Languages and Profs").SetValueAsync(LanguagesandProfs);
             yield return new WaitUntil(predicate: () => DBTask63.IsCompleted);
         }
 
         private IEnumerator UpdateCharWeapons(string ExtraAttacks, string Weapon1, string Weapon2, string Weapon3, string Damage1, string Damage2, string Damage3, string DamageType1, string DamageType2, string DamageType3)
         {
-            var DBTask64 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("ExtraAttacks").SetValueAsync(ExtraAttacks);
+            var DBTask64 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("ExtraAttacks").SetValueAsync(ExtraAttacks);
             yield return new WaitUntil(predicate: () => DBTask64.IsCompleted);
-            var DBTask65 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("Weapon1").SetValueAsync(Weapon1);
+            var DBTask65 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("Weapon1").SetValueAsync(Weapon1);
             yield return new WaitUntil(predicate: () => DBTask65.IsCompleted);
-            var DBTask66 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("Weapon2").SetValueAsync(Weapon2);
+            var DBTask66 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("Weapon2").SetValueAsync(Weapon2);
             yield return new WaitUntil(predicate: () => DBTask66.IsCompleted);
-            var DBTask67 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("Weapon3").SetValueAsync(Weapon3);
+            var DBTask67 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("Weapon3").SetValueAsync(Weapon3);
             yield return new WaitUntil(predicate: () => DBTask67.IsCompleted);
-            var DBTask68 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("Damage1").SetValueAsync(Damage1);
+            var DBTask68 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("Damage1").SetValueAsync(Damage1);
             yield return new WaitUntil(predicate: () => DBTask68.IsCompleted);
-            var DBTask69 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("Damage2").SetValueAsync(Damage2);
+            var DBTask69 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("Damage2").SetValueAsync(Damage2);
             yield return new WaitUntil(predicate: () => DBTask69.IsCompleted);
-            var DBTask70 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("Damage3").SetValueAsync(Damage3);
+            var DBTask70 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("Damage3").SetValueAsync(Damage3);
             yield return new WaitUntil(predicate: () => DBTask70.IsCompleted);
-            var DBTask71 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("DamageType1").SetValueAsync(DamageType1);
+            var DBTask71 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("DamageType1").SetValueAsync(DamageType1);
             yield return new WaitUntil(predicate: () => DBTask71.IsCompleted);
-            var DBTask72 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("DamageType2").SetValueAsync(DamageType2);
+            var DBTask72 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("DamageType2").SetValueAsync(DamageType2);
             yield return new WaitUntil(predicate: () => DBTask72.IsCompleted);
-            var DBTask73 = DBreference.Child("users").Child(User.UserId).Child("Weapons").Child("DamageType3").SetValueAsync(DamageType3);
+            var DBTask73 = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Weapons").Child("DamageType3").SetValueAsync(DamageType3);
             yield return new WaitUntil(predicate: () => DBTask73.IsCompleted);
         }
 
         public IEnumerator LoadDetails()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
 
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
@@ -452,7 +452,7 @@ namespace Firebase_Authentication
                 try
                 {
                     PlayerName.text = snapshot.Child("Details").Child("PlayerName").Value.ToString();
-                    Class_Level.text = snapshot.Child("Details").Child("Class/Level").Value.ToString();
+                    Class_Level.text = snapshot.Child("Details").Child("ClassLevel").Value.ToString();
                     Race.text = snapshot.Child("Details").Child("Race").Value.ToString();
                     Alignment.text = snapshot.Child("Details").Child("Alignment").Value.ToString();
                     Background.text = snapshot.Child("Details").Child("Background").Value.ToString();
@@ -473,7 +473,7 @@ namespace Firebase_Authentication
 
         public IEnumerator LoadBackground()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)
@@ -504,7 +504,7 @@ namespace Firebase_Authentication
         
         public IEnumerator LoadHealth()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)
@@ -516,7 +516,7 @@ namespace Firebase_Authentication
             else if (DBTask.Result.Value == null)
             {
                 //Set the data of all feilds to null orr 0
-                DatabaseWarning.text = "Not all fields in database have value";
+                DatabaseWarning.text = "Not all health fields in database have value";
                 Armour_Class.text = "0";
                 Initiative.text = "0";
                 Speed.text = "0";
@@ -550,7 +550,7 @@ namespace Firebase_Authentication
         
         public IEnumerator LoadEquipment()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)
@@ -591,7 +591,7 @@ namespace Firebase_Authentication
         
         public IEnumerator LoadInventory()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)
@@ -623,7 +623,7 @@ namespace Firebase_Authentication
         
         public IEnumerator LoadStats()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)
@@ -736,7 +736,7 @@ namespace Firebase_Authentication
         
         public IEnumerator LoadLanguagesProfs()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)
@@ -768,7 +768,7 @@ namespace Firebase_Authentication
         
         public IEnumerator LoadWeapons()
         {
-            var DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
+            var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).GetValueAsync();
             yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
 
             if (DBTask.Exception != null)

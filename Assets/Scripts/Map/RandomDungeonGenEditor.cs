@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+/*
 //attribute for custom button
 [CustomEditor(typeof(AbstractDungeonGen), true)]
 
@@ -31,3 +31,4 @@ public class RandomDungeonGenEditor : Editor
         }
     }
 }
+*/

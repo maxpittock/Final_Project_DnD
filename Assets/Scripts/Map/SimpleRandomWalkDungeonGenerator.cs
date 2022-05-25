@@ -39,7 +39,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
 
     
     //list of ints to store vecto pos to send to firebase
-    List<int> posistionStore = new List<int>();
+    List<int> posistionStore;
 
     //loading data list
     private IList LoadedMapData;
@@ -48,7 +48,9 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
     //public List<string> test;
     private HashSet<Vector2Int> floorPositions;
 
-    public int[,] temp;
+    public int[] temp;
+
+    private string[] name;
     
     void Awake()
     {
@@ -135,7 +137,9 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
         HashSet2Array = new Vector2Int[floorPositions.Count];
         //copy the vector2int array to the vector 
         floorPositions.CopyTo(HashSet2Array);
-    
+
+        posistionStore =  new List<int>();
+
         for (int i = 0; i < HashSet2Array.Length; i++)
         {
         
@@ -154,10 +158,10 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
  
         }
         //prints each list pos
-        foreach(int key in posistionStore)
-        {
-            Debug.Log(key + " da list");
-        }
+        //foreach(int key in posistionStore)
+        //{
+           // Debug.Log(key + " da list");
+       // }
   
  
         return floorPositions;
@@ -167,16 +171,28 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
 
     public void SaveDataButton()
     {
-        
+        Debug.Log(posistionStore + " list store");
         StartCoroutine(SaveMaps(posistionStore));
 
     }
     
     private IEnumerator SaveMaps(List<int> savedmap)
     {
+
+
         var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Maps").Child("Map1").SetValueAsync(savedmap);
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
     }
+
+    /*private void UpdateMaps(int savedmap) 
+    {
+        DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Maps").Child("Map1").RunTransaction(mutableData => {
+            // if the data isn't an int or is null, just make it 0
+            // then add the new number of kills
+            var kills = ((mutableData.value as? int) ?? 0) + savedmap;
+            return TransactionResult.Success(mutableData);
+        });
+    }*/
 
     public void LoadDataButton()
     {
@@ -197,7 +213,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
 
         if (DBTask1.Exception != null)
         {
-            Debug.LogWarning("Load Details Failed "+ DBTask1.Exception);
+            Debug.LogWarning("Load Details Failed " + DBTask1.Exception);
             DatabaseWarning.text = "No map data currently saved please save some";
         }
         else
@@ -205,10 +221,29 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
             DataSnapshot snapshot = DBTask1.Result;             
         try
         {
+           /* foreach (var childSnapshot in snapshot.Children)
+            { 
+                Debug.Log(childSnapshot.Value.ToString() + " test");   
+
+            
+                name = new string[]{childSnapshot.Value.ToString()}; 
+                for (int i = 0; i < name.Length; i++)
+                {
+                    temp[i] = int.Parse(name[i]);
+                    
+                    Debug.Log(temp[i] + " pleaseee");
+                }
+
+                foreach(string i in name)
+                {    
+                    Debug.Log(i + "youuuuu");
+                }
+            }*/
+            
             foreach (DataSnapshot s in snapshot.Children)
             {
                 //IDictionary result = snapshot.Child("Map1")s.Value;
-                Debug.Log(s.Value+ " s");
+                Debug.Log(s +  " s");
                 
                 //Create a list to sttore the loaded map data
                 LoadedMapData = (IList)s.Value;
@@ -224,7 +259,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
                         {
                             if (y % 3 == 1)
                             {
-                               //temp = new int[LoadedMapData[x], LoadedMapData[y]];
+                              // temp = new int[LoadedMapData[x], LoadedMapData[y]];
                             }
                            
                         }
@@ -233,7 +268,8 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
 
                     }
                 }
-                Debug.Log(temp);
+
+                Debug.Log(name);
 
                 //loop through contentto check it has been filled.
                 foreach(var y in LoadedMapData)
@@ -264,5 +300,6 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
     }
 
 }
-
 }
+
+
