@@ -183,6 +183,8 @@ namespace Firebase_Authentication
 
             StartCoroutine(UpdateInventory(Inventory.text));
 
+        //if i change these to strings it wont beak i dont think
+
             StartCoroutine(UpdateCharStats(int.Parse(Strength.text) , int.Parse(Dexterity.text) , int.Parse(Constitution.text), int.Parse(Intelligence.text), int.Parse(Wisdom.text), int.Parse(Charisma.text),
             int.Parse(StrengthProf.text), int.Parse(DexterityProf.text), int.Parse(ConstitutionProf.text), int.Parse(IntelligenceProf.text), int.Parse(WisdomProf.text), int.Parse(CharismaProf.text), 
             int.Parse(StrengthSavingThrow.text), int.Parse(DexteritySavingThrow.text), int.Parse(ConstitutionSavingThrow.text), int.Parse(IntelligenceSavingThrow.text), int.Parse(WisdomSavingThrow.text),

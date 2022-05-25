@@ -39,9 +39,11 @@ namespace Managers
 
         public void LeaveQueue(string playerId, Action callback, Action<AggregateException> fallback)
         {
+            Debug.Log("LeaveQueue");
+
             DatabaseAPI.StopListeningForValueChanged(queueListener);
             DatabaseAPI.PostJSON($"DungeonMasters/matchmaking/{playerId}", "null", callback, fallback);
-            SceneManager.LoadScene("Matchmaking");
+            //SceneManager.LoadScene("Matchmaking");
         }
     }
 }

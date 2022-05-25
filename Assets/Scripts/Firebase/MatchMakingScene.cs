@@ -43,6 +43,8 @@ namespace Handlers
             MainManager.Instance.gameManager.GetCurrentGameInfo(gameId, MainManager.Instance.currentLocalPlayerId,
                 gameInfo =>
                 {
+                    //Debug.Log("GAMEFOUND")
+
                     searchingPanel.SetActive(false);
                     foundPanel.SetActive(true);
                     Debug.Log("Game found. Ready-up!");
@@ -70,7 +72,7 @@ namespace Handlers
             else
                 MainManager.Instance.matchmakingManager.LeaveQueue(MainManager.Instance.currentLocalPlayerId,
                     () => Debug.Log("Left queue successfully"), Debug.Log);
-            SceneManager.LoadScene("MenuMenu");
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void Ready() =>
