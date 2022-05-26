@@ -4,6 +4,7 @@ using UnityEngine;
 using APIs;
 using Managers;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 namespace Handlers
 {
@@ -16,6 +17,9 @@ namespace Handlers
         private bool gameFound;
         private bool readyingUp;
         private string gameId;
+        
+        //public TMP_Text Player1;
+        //public TMP_Text Player2;
 
         private void Start() => JoinQueue();
 
@@ -48,6 +52,8 @@ namespace Handlers
                     searchingPanel.SetActive(false);
                     foundPanel.SetActive(true);
                     Debug.Log("Game found. Ready-up!");
+
+                    //Player1.text = $"Welcome! {currentLocalPlayerId} ";
                     gameFound = true;
                     //listen to see if all players have readyed up
                     MainManager.Instance.gameManager.ListenForAllPlayersReady(gameInfo.playersIds,

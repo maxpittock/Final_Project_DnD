@@ -29,6 +29,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
     public DatabaseReference DBreference;
     //public FirebaseFirestore FirestoreDB;
 
+    public TMP_Text savetext;
     // will make private variables visible in the inspector 
     [SerializeField]
     // how many times we want to run our algorithm
@@ -173,13 +174,12 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
     {
         Debug.Log(posistionStore + " list store");
         StartCoroutine(SaveMaps(posistionStore));
+        savetext.text = "Save Successful";
 
     }
     
     private IEnumerator SaveMaps(List<int> savedmap)
     {
-
-
         var DBTask = DBreference.Child("DungeonMasters").Child("users").Child(User.UserId).Child("Maps").Child("Map1").SetValueAsync(savedmap);
         yield return new WaitUntil(predicate: () => DBTask.IsCompleted);
     }
@@ -199,6 +199,7 @@ public class SimpleRandomWalkDungeonGenerator : AbstractDungeonGen
         //update the data for the text fields
         
         StartCoroutine(LoadMaps());
+        savetext.text = "Load Successful";
        
     }
 
