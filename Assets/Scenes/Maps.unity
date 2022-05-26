@@ -2978,9 +2978,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapVisualizer: {fileID: 969343044}
   startPosition: {x: 300, y: 500}
-  DatabaseWarning: {fileID: 0}
+  DatabaseWarning: {fileID: 1352413966}
   dependencyStatus: 0
-  savetext: {fileID: 0}
+  savetext: {fileID: 1531795817}
   Algorithm_Parameters: {fileID: 11400000, guid: eec0187a50872ad46b19008d06635783, type: 2}
   temp: 
   corridorLength: 25
@@ -14286,9 +14286,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapVisualizer: {fileID: 969343044}
   startPosition: {x: 300, y: 500}
-  DatabaseWarning: {fileID: 0}
+  DatabaseWarning: {fileID: 1352413966}
   dependencyStatus: 0
-  savetext: {fileID: 0}
+  savetext: {fileID: 1531795817}
   Algorithm_Parameters: {fileID: 11400000, guid: 5ddf1f150aa1f3c4299584c0797693f0, type: 2}
   temp: 
   minRoomWidth: 10
