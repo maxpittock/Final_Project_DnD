@@ -34,10 +34,8 @@ public class ProceduralGenerationAlgorithms
     // creating the function to create corridors connecting multiple rooms 
     public static List<Vector2Int> RandomWalkCorridor(Vector2Int startPosition, int corridorLength)
     {
-        
-
+    
         //You can save it as a Map or as an array and then convert it to a HashSet on the client.
-
         
         //use list instead of vector 2 int since we need the last position for the next start position
         List<Vector2Int> corridor = new List<Vector2Int>();
